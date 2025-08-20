@@ -1,0 +1,10 @@
+name = "PosteriorDBTargets"
+uuid = "20b21de0-3224-41a8-b8eb-8f086ec5e03c"
+authors = ["Alexandre Bouchard <bouchard@stat.ubc.ca>"]
+version = "0.1.0"
+
+[deps]
+BridgeStan = "c88b6f0a-829e-4b0b-94b7-f06ab5908f5a"
+JSON = "682c06a0-de6a-54ab-a142-c8b1cf79cde6"
+Pigeons = "0eb8d820-af6a-4919-95ae-11206f830c31"
+ZipFile = "a5390f91-8eb1-5f08-bee0-b1d1ffed6cea"
