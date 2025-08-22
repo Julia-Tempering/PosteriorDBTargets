@@ -9,15 +9,22 @@ using BridgeStan
 include("$(dirname(dirname(Base.pathof(Pigeons))))/test/supporting/postdb.jl")
 
 installed() = isdir(Pigeons.mpi_settings_folder() * "/posteriordb/posterior_database")
-if !installed() 
-    setup_posterior_db() 
+
+function provide_targetIds() 
+    if !installed() 
+        setup_posterior_db() 
+    end
+    return map(posterior_db_list(false)) do string 
+        without_suffix = string[begin:end-5]
+        return Symbol(without_suffix)
+    end
 end
 
-provide_targetIds() = map(posterior_db_list(false)) do string 
-    without_suffix = string[begin:end-5]
-    return Symbol(without_suffix)
+function provide_target(symbol)
+    if !installed() 
+        setup_posterior_db() 
+    end
+    return log_potential_from_posterior_db("$symbol.json")
 end
-
-provide_target(symbol) = log_potential_from_posterior_db("$symbol.json")
 
 end 
